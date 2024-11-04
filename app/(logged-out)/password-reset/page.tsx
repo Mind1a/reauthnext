@@ -32,7 +32,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { passwordSchema } from "@/validation/passwordSchema";
-// import { LoginWithCredentials } from "./action";
 
 const formSchema = z.object({
   email: z.string().email(),

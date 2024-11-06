@@ -1,9 +1,35 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
 type Props = {
-  twoFactorActivated: any;
+  twoFactorActivated: boolean;
 };
 
 export default function TwoFactorAuthForm({ twoFactorActivated }: Props) {
-  return <div>TwoFactorAuthForm</div>;
+  const [isActivated, setIsActivated] = useState(twoFactorActivated);
+  const [step, setStep] = useState(1);
+
+  const handleEnableClick = () => {
+    setStep(2);
+  };
+  return (
+    <div>
+      {!isActivated && (
+        <div>
+          {step === 1 && (
+            <Button onClick={handleEnableClick}>
+              Enable Two-Factor Authentication
+            </Button>
+          )}
+          {step === 2 && (
+            <div>
+              <p>QR CODE</p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 }

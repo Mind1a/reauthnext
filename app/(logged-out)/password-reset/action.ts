@@ -6,6 +6,7 @@ import { passwordResetTokens } from "@/db/passwordResetTokensSchema";
 import { users } from "@/db/userSchema";
 import { randomBytes } from "crypto";
 import { eq } from "drizzle-orm";
+import { mailer } from "@/lib/email";
 
 export const passwordReset = async (emailAddress: string) => {
   const session = await auth();
@@ -49,4 +50,12 @@ export const passwordReset = async (emailAddress: string) => {
         tokenExpiry,
       },
     });
+
+  const resetLink = `${process.env.SITE_BASE_URL}/update-password?token=${passwordResetToken}`;
+  await mailer.sendMail({
+    from: "noreplay@re-educate.online",
+    subject: "Your password reset request",
+    to: emailAddress,
+    html: `Hey , ${emailAddress}! Your password reset link: <a href="${resetLink}">${resetLink}</a> expire in 1 day`,
+  });
 };

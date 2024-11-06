@@ -26,7 +26,7 @@ export default async function MyAccount() {
         <div className="text-muted-foreground">{session?.user?.email}</div>
         {/* Two Factor Auth Form */}
         <TwoFactorAuthForm
-          twoFactorActivated={users.twoFactorActivated ?? false}
+          twoFactorActivated={user.twoFactorActivated ?? false}
         />
       </CardContent>
     </Card>

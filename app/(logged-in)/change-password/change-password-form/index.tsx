@@ -5,18 +5,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { FormProvider } from "react-hook-form";
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,7 +15,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { passwordSchema } from "@/validation/passwordSchema";
 import { passwordMatchSchema } from "@/validation/passwordMatchSchema";
 import { changePassword } from "./action";
@@ -37,7 +27,6 @@ const formSchema = z
   .and(passwordMatchSchema);
 
 export default function ChangePasswordForm() {
-  const router = useRouter();
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -86,7 +75,7 @@ export default function ChangePasswordForm() {
             name="currentPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Current Password</FormLabel>
+                <FormLabel>Curren&apos;t Password</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="current password"
